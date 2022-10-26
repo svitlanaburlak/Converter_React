@@ -3,15 +3,23 @@
 .currency {
   background-color: vars.$clear;
   text-align: left;
+  overflow: auto;
+  height: 200px;
 
   &-item {
-    border-bottom: 1px solid vars.$mainColor;
+    border-bottom: 1px solid vars.$altColor;
     color: vars.$mainColor;
     font-weight: 500;
+    padding: 1em 0.5em;
 
     &:last-child {
       border-bottom: 0;
     }
+  }
+
+  &-item:hover {
+    background-color: vars.$altColor;
+    transition: background-color 200ms;
   }
 
 }
