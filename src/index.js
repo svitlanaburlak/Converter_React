@@ -2,16 +2,13 @@
 import { createRoot } from 'react-dom/client';
 
 // == Import : local
-// Composants
-import App from 'src/components/App';
+import Converter from 'src/components/Converter';
 
 // == Render
-// 1. Élément React racine (celui qui contient l'ensemble de l'app)
-//    => crée une structure d'objets imbriqués (DOM virtuel)
-const rootReactElement = <App />;
+const rootReactElement = <Converter />;
 
-// 2. La cible du DOM (là où la structure doit prendre vie dans le DOM)
+// The target of the DOM where our structure will be placed
 const root = createRoot(document.getElementById('root'));
 
-// 3. Déclenchement du rendu de React (virtuel) => DOM (page web)
+// React virtual DOM => DOM (web page)
 root.render(rootReactElement);
