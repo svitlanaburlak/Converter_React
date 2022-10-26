@@ -8,7 +8,7 @@ function Currencies( { currencies } ) {
     <ul className="currency">
       {
         currencies.map((currency) => (
-            <Currency {...currency} key={currency.rate}/>
+          <Currency {...currency} key={currency.name}/>
         ))
       }
     </ul>
@@ -16,7 +16,7 @@ function Currencies( { currencies } ) {
 }
 
 Currencies.propTypes = {
-  Currencies: PropTypes.arrayOf(
+  currencies: PropTypes.arrayOf(
     // we precise the structure of our object
     PropTypes.shape({
       rate: PropTypes.number,

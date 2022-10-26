@@ -1,13 +1,8 @@
 @use 'reset';
 @use 'vars';
 
-@font-face {
-  font-family: 'Niconne', cursive;
-  src: url('../assets/fonts/Niconne-Regular.ttf');
-}
-
 body {
-  font-family: 'Niconne', cursive;
+  font-family: vars.$font;
   font-weight: 300;
 }
 

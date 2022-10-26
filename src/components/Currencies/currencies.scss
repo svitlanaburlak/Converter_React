@@ -3,14 +3,16 @@
 .currency {
   background-color: vars.$clear;
   text-align: left;
-  overflow: auto;
-  height: 200px;
+  overflow-y: scroll;
+  max-height: 60vh;
 
   &-item {
     border-bottom: 1px solid vars.$altColor;
     color: vars.$mainColor;
     font-weight: 500;
     padding: 1em 0.5em;
+    transition: background-color 1s;
+    cursor: pointer;
 
     &:last-child {
       border-bottom: 0;
@@ -19,7 +21,23 @@
 
   &-item:hover {
     background-color: vars.$altColor;
-    transition: background-color 200ms;
+    transition-duration: 200ms;
   }
 
+}
+
+// scroll-bar
+.currency {
+  &::-webkit-scrollbar {
+    width: 0.5;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: vars.$clear;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: vars.$mainColor;
+    outline: 1px solid black;
+  }
 }
