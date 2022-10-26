@@ -1,0 +1,17 @@
+@use "/src/styles/vars";
+
+.currency {
+  background-color: vars.$clear;
+  text-align: left;
+
+  &-item {
+    border-bottom: 1px solid vars.$mainColor;
+    color: vars.$mainColor;
+    font-weight: 500;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+}
