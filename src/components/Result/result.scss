@@ -1,0 +1,14 @@
+@use "/src/styles/vars";
+
+.result {
+  background-color: vars.$clear;
+
+  &-title{
+    color: vars.$mainColor;
+    font-weight: 700;
+  }
+
+  &-subtitle {
+    color: vars.$mainColor;
+  }
+}

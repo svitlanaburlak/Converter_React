@@ -1,0 +1,14 @@
+@use "/src/styles/vars";
+
+.header {
+  background-color: vars.$mainColor;
+
+  &-title {
+    color: vars.$clear;
+    font-weight: 700;
+  }
+
+  &-subtitle {
+    color: vars.$clear;
+  }
+}
