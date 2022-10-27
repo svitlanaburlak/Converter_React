@@ -6,6 +6,19 @@
   overflow-y: scroll;
   max-height: 60vh;
 
+  &-search {
+    padding: 0.8;
+    margin-top: 0.8;
+    font-weight: bold;
+    width: 100%;
+    border: none;
+    color: vars.$mainColor;
+    font: inherit;
+    &::placeholder {
+        color: vars.$altColor;
+    }
+  }
+
   &-item {
     border-bottom: 1px solid vars.$altColor;
     color: vars.$mainColor;

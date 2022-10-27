@@ -18,10 +18,12 @@ class Converter extends React.Component {
       isOpen: true,
       baseAmount: 1,
       currency: 'Australian Dollar',
+      search: '',
     };
     // give acces to state by handleClick
     this.handleClick = this.handleClick.bind(this);
     this.handleCurrencyClick = this.handleCurrencyClick.bind(this);
+    this.handleChangeSearch = this.handleChangeSearch.bind(this);
   }
   // if isOpen is true list of currencies will be shown
  
@@ -36,6 +38,12 @@ class Converter extends React.Component {
     const { currency } = this.state;
     this.setState({
       currency: name,
+    });
+  }
+
+  handleChangeSearch(valueSearch) {
+    this.setState({
+      search: valueSearch,
     });
   }
 
@@ -55,7 +63,7 @@ class Converter extends React.Component {
   render() {
     const resultAmount = this.makeConversion();
 
-    const {isOpen, baseAmount, currency} = this.state;
+    const {isOpen, baseAmount, currency, search} = this.state;
     return (
       <div className="converter">
         <Header baseAmount={baseAmount} />
@@ -66,6 +74,8 @@ class Converter extends React.Component {
             <Currencies 
               currencies={currencies} 
               handleCurrencyClick={this.handleCurrencyClick}
+              searchValue={search}
+              setSearch={this.handleChangeSearch}
           />)
         }
         <Result currency={currency} value={resultAmount} />

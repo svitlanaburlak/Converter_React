@@ -3,18 +3,29 @@ import PropTypes from 'prop-types';
 import Currency from './currency';
 import './currencies.scss';
 
-function Currencies( { currencies, handleCurrencyClick } ) {
+function Currencies( { currencies, handleCurrencyClick, searchValue, setSearch } ) {
   return (
-    <ul className="currency">
-      {
-        currencies.map((currency) => (
-          <Currency {...currency} key={currency.name}
-            // we make function to act when currency is clicked
-            handleCurrencyClick={handleCurrencyClick}
-          />
-        ))
-      }
-    </ul>
+    <div className="currency">
+      <input 
+        type="text" 
+        className="currency-search"
+        placeholder="Rechercher"
+        value={searchValue}
+        onChange={(ev) => {
+          setSearch(ev.currentTarget.value);
+        }}
+      ></input>
+      <ul>
+        {
+          currencies.map((currency) => (
+            <Currency {...currency} key={currency.name}
+              // we make function to act when currency is clicked
+              handleCurrencyClick={handleCurrencyClick}
+            />
+          ))
+        }
+      </ul>
+    </div>
   );
 }
 
@@ -27,6 +38,8 @@ Currencies.propTypes = {
     }).isRequired,
   ).isRequired,
   handleCurrencyClick: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired,
+  setSearch: PropTypes.func.isRequired,
 };
 
 export default Currencies;
