@@ -3,6 +3,7 @@
 .header {
   background-color: vars.$mainColor;
   padding: 2em;
+  color: vars.$clear;
 
   &-title {
     color: vars.$clear;
@@ -11,5 +12,19 @@
 
   &-subtitle {
     color: vars.$clear;
+  }
+
+  &-amount-value {
+    background: transparent;
+    border: 0;
+    font: inherit;
+    color: vars.$clear;
+    direction: rtl;
+    width: 48%;
+    padding-right: 1em;
+  
+    &:focus {
+      background: rgba(vars.$clear, 0.3);
+    }
   }
 }

@@ -16,7 +16,7 @@ class Converter extends React.Component {
     // if isOpen is true list of currencies will be shown
     this.state = {
       isOpen: true,
-      baseAmount: 1,
+      baseAmount: Number(1),
       currency: 'Australian Dollar',
       search: '',
     };
@@ -24,6 +24,7 @@ class Converter extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleCurrencyClick = this.handleCurrencyClick.bind(this);
     this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.handleSetBaseAmount = this.handleSetBaseAmount.bind(this);
   }
 
   componentDidMount() {
@@ -71,6 +72,13 @@ class Converter extends React.Component {
     });
   }
 
+  handleSetBaseAmount(value) {
+    console.log(value);
+    this.setState({
+      baseAmount: Number(value),
+    });
+  }
+
   makeConversion() {
     const { baseAmount, currency } = this.state;
 
@@ -110,7 +118,7 @@ class Converter extends React.Component {
     const {isOpen, baseAmount, currency, search} = this.state;
     return (
       <div className="converter">
-        <Header baseAmount={baseAmount} />
+        <Header baseAmount={baseAmount} setBaseAmount={this.handleSetBaseAmount} />
         <Toggler open={isOpen} manageClick={this.handleClick} />
         {
           isOpen 
