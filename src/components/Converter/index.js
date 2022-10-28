@@ -7,13 +7,13 @@ import Currencies from 'src/components/Currencies';
 import Result from 'src/components/Result';
 import currencies from 'src/data/currencies';
 import './converter.scss';
-import { element } from 'prop-types';
 
 
 class Converter extends React.Component {
   constructor(props) {
     // obligatory
     super(props);
+    // if isOpen is true list of currencies will be shown
     this.state = {
       isOpen: true,
       baseAmount: 1,
@@ -25,7 +25,30 @@ class Converter extends React.Component {
     this.handleCurrencyClick = this.handleCurrencyClick.bind(this);
     this.handleChangeSearch = this.handleChangeSearch.bind(this);
   }
-  // if isOpen is true list of currencies will be shown
+
+  componentDidMount() {
+    // Closes currency list with ESC and opens with ENTER
+    document.addEventListener('keyup', (evt) => {
+      console.log(evt.key);
+      if (evt.key === 'Escape') {
+        this.setState({
+          isOpen: false,
+        });
+      }
+      else if (evt.key === 'Enter') {
+        this.setState({
+          isOpen: true,
+        });
+      }
+    });
+    
+  }
+
+  // Every time component (its state) gets updated, this method is launched
+  componentDidUpdate() {
+    const { currency } = this.state;
+    document.title = currency;
+  }
  
   handleClick() {
     const {isOpen} = this.state;
@@ -42,6 +65,7 @@ class Converter extends React.Component {
   }
 
   handleChangeSearch(valueSearch) {
+    // chnages value of state upon the input change
     this.setState({
       search: valueSearch,
     });
@@ -59,9 +83,29 @@ class Converter extends React.Component {
     return Math.round((baseAmount * rate) * 100) / 100;
   }
 
+  /**
+   * Function returns the list of the currencies according to the criteria of the research:
+   * @search of our state
+   */
+  getFilteretedCurrencies() {
+    const { search } = this.state;
+    let filteredCurrencies = currencies;
+
+    if(search.length > 0) {
+      filteredCurrencies = currencies.filter((currency) => {
+        const nameLowerCase = currency.name.toLowerCase();
+        const searchLowerCase = search.toLowerCase();
+        return nameLowerCase.includes(searchLowerCase);
+      })
+    }
+    // console.log(filteredCurrencies);
+    return filteredCurrencies;
+  }
+
   // render() is executed every time state is changed
   render() {
     const resultAmount = this.makeConversion();
+    const filteretedCurrencies = this.getFilteretedCurrencies();
 
     const {isOpen, baseAmount, currency, search} = this.state;
     return (
@@ -72,7 +116,7 @@ class Converter extends React.Component {
           isOpen 
           && (
             <Currencies 
-              currencies={currencies} 
+              currencies={filteretedCurrencies} 
               handleCurrencyClick={this.handleCurrencyClick}
               searchValue={search}
               setSearch={this.handleChangeSearch}

@@ -12,6 +12,8 @@ function Currencies( { currencies, handleCurrencyClick, searchValue, setSearch }
         placeholder="Rechercher"
         value={searchValue}
         onChange={(ev) => {
+          // console.log(ev.currentTarget.value);
+          // need to pass by callback to execute this function just on click
           setSearch(ev.currentTarget.value);
         }}
       ></input>
