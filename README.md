@@ -1,6 +1,6 @@
 # Converter
 
-Here is my first exercice in React.
+Here is my first exercise in React.
 App: Currency converter.
 
 Run 
